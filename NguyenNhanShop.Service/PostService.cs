@@ -12,7 +12,7 @@ namespace NguyenNhanShop.Service
     public interface IPostService
     {
         void Add(Post post);
-
+    
         void Update(Post post);
 
         void Delete(int id);
@@ -34,24 +34,30 @@ namespace NguyenNhanShop.Service
         IPostRepository _postRepository;
         IUnitOfWork _unitOfWork;
 
+        public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
+        {
+            this._postRepository = postRepository;
+            this._unitOfWork = unitOfWork;
+        }
+
         public void Add(Post post)
         {
-            throw new NotImplementedException();
+            _postRepository.Add(post);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
         {
-            throw new NotImplementedException();
+            return _postRepository.GetAll(new string[] { "PostCategory" });
         }
 
         public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
         {
-            throw new NotImplementedException();
+            return _postRepository.GetMultiPaging(x => x.Status && x.CategoryID == categoryId, out totalRow, page, pageSize, new string[] { "PostCategory" });
         }
 
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
@@ -61,22 +67,22 @@ namespace NguyenNhanShop.Service
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
         {
-            throw new NotImplementedException();
+            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
         }
 
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            return _postRepository.GetSingleById(id);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _unitOfWork.Commit();
         }
 
         public void Update(Post post)
         {
-            throw new NotImplementedException();
+            _postRepository.Update(post);
         }
     }
 }

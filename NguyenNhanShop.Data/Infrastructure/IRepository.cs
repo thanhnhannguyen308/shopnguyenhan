@@ -35,4 +35,6 @@ namespace NguyenNhanShop.Data.Infrastructure
 
         bool CheckContains(Expression<Func<T, bool>> predicate);
     }
+
+
 }
