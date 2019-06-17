@@ -1,4 +1,6 @@
-﻿using NguyenNhanShop.Model.Models;
+﻿using NguyenNhanShop.Data.Infrastructure;
+using NguyenNhanShop.Data.Repositories;
+using NguyenNhanShop.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
