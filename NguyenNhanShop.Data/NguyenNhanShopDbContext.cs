@@ -34,6 +34,9 @@ namespace NguyenNhanShop.Data
 
         public DbSet<Tag> Tags { set; get; }
 
+        public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
+        public DbSet<Error> Errors { set; get; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
