@@ -1,6 +1,8 @@
-﻿using NguyenNhanShop.Model.Models;
+﻿using AutoMapper;
+using NguyenNhanShop.Model.Models;
 using NguyenNhanShop.Service;
 using NguyenNhanShop.Web.Infrastructure.Core;
+using NguyenNhanShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,7 @@ namespace NguyenNhanShop.Web.Api
             {
                 var listCategory = _postCategoryService.GetAll();
 
-               // var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
 
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
 

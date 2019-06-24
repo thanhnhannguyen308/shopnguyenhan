@@ -1,4 +1,5 @@
-﻿using NguyenNhanShop.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using NguyenNhanShop.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NguyenNhanShop.Data
 {
-    public class NguyenNhanShopDbContext : DbContext
+    public class NguyenNhanShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public NguyenNhanShopDbContext() : base("NguyenNhanShopConnection")
         {
@@ -36,7 +37,11 @@ namespace NguyenNhanShop.Data
 
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
         public DbSet<Error> Errors { set; get; }
-        
+
+        public static NguyenNhanShopDbContext Create()
+        {
+            return new NguyenNhanShopDbContext();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
